@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import CandidateUploadView
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path('upload/', CandidateUploadView.as_view(), name='upload_candidate_resume'),
 ]
