@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Candidate
-from .utils import extract_text_from_pdf, extract_text_from_docx
+from .utils import extract_text_from_resume  # Import the correct function
 
 class CandidateSerializer(serializers.ModelSerializer):
     extracted_text = serializers.SerializerMethodField()
@@ -13,10 +13,4 @@ class CandidateSerializer(serializers.ModelSerializer):
         if not obj.resume:  
             return "No resume uploaded"
 
-        file_path = obj.resume.path  
-
-        if file_path.endswith('.pdf'):
-            return extract_text_from_pdf(file_path)
-        elif file_path.endswith('.docx'):
-            return extract_text_from_docx(file_path)
-        return "Unsupported file format"
+        return extract_text_from_resume(obj.resume)  # Use the correct function

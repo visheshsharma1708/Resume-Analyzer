@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Resume Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            background: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .faq-section {
+            background: white;
+            padding: 40px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        .faq-question {
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .faq-answer {
+            display: none;
+            padding-top: 10px;
+            font-size: 16px;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function toggleAnswer(id) {
+            var answer = document.getElementById(id);
+            if (answer.style.display === "none") {
+                answer.style.display = "block";
+            } else {
+                answer.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Frequently Asked Questions</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="container">
+        <div class="faq-section">
+            <div class="faq-item">
+                <p class="faq-question" onclick="toggleAnswer('answer1')">What is Resume Analyzer?</p>
+                <p class="faq-answer" id="answer1">Resume Analyzer is an AI-powered tool that analyzes resumes and provides insights to improve job matching.</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-question" onclick="toggleAnswer('answer2')">How does Resume Scoring work?</p>
+                <p class="faq-answer" id="answer2">Our AI evaluates your resume based on key factors such as skills, experience, and job fit.</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-question" onclick="toggleAnswer('answer3')">Can I use Resume Analyzer for free?</p>
+                <p class="faq-answer" id="answer3">We offer both free and premium plans with additional features for deeper analysis.</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-question" onclick="toggleAnswer('answer4')">Does Resume Analyzer support LinkedIn profile parsing?</p>
+                <p class="faq-answer" id="answer4">Yes! You can import your LinkedIn profile and generate a resume based on the extracted data.</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Resume Analyzer. All rights reserved.</p>
+    </footer>
+</body>
+</html>

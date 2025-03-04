@@ -1,24 +1,40 @@
-import fitz  # PyMuPDF for PDF extraction
+from django.shortcuts import render
+from .forms import ResumeUploadForm
+from .models import Candidate
+import PyPDF2
 import docx
 
-def extract_text_from_pdf(pdf_path):
-    """Extracts text from a PDF file"""
+# Function to extract text from resume
+def extract_text_from_resume(resume_file):
     text = ""
-    try:
-        doc = fitz.open(pdf_path)
-        for page in doc:
-            text += page.get_text("text") + "\n"
-    except Exception as e:
-        return f"Error reading PDF: {e}"
-    return text
-
-def extract_text_from_docx(docx_path):
-    """Extracts text from a DOCX file"""
-    text = ""
-    try:
-        doc = docx.Document(docx_path)
+    if resume_file.name.endswith('.pdf'):
+        pdf_reader = PyPDF2.PdfReader(resume_file)
+        for page in pdf_reader.pages:
+            text += page.extract_text() or ""
+    elif resume_file.name.endswith('.docx'):
+        doc = docx.Document(resume_file)
         for para in doc.paragraphs:
             text += para.text + "\n"
-    except Exception as e:
-        return f"Error reading DOCX: {e}"
     return text
+
+# Function to calculate match score
+def calculate_match_score(resume_text, job_description):
+    resume_words = set(resume_text.lower().split())
+    job_words = set(job_description.lower().split())
+    common_words = resume_words.intersection(job_words)
+    score = (len(common_words) / len(job_words)) * 100 if job_words else 0
+    return round(score, 2)
+
+# View for uploading resumes
+def upload_resume(request):
+    if request.method == "POST":
+        form = ResumeUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            candidate = form.save()  # This automatically saves to the database
+            resume_text = extract_text_from_resume(candidate.resume)
+            job_description = request.POST.get("job_description", "")
+            match_score = calculate_match_score(resume_text, job_description)
+            return render(request, 'result.html', {'candidate': candidate, 'match_score': match_score})
+    else:
+        form = ResumeUploadForm()
+    return render(request, 'upload.html', {'form': form})

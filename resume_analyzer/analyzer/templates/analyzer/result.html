@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Match Score</title>
+</head>
+<body>
+    <h2>Resume Analysis Result</h2>
+    <p><strong>Candidate Name:</strong> {{ candidate.name }}</p>
+    <p><strong>Match Score:</strong> {{ match_score }}%</p>
+    <a href="{% url 'upload_resume' %}">Upload Another Resume</a>
+</body>
+</html>
