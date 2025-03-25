@@ -1,0 +1,1 @@
+This website is for resume ananlyzing. in which user can upload their resume and jd's for which they are applying for and after uploading website will give them a match score that how much percent your resume is perfect for that specific job role .
