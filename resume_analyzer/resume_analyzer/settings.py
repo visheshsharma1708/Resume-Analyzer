@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'analyzer.apps.AnalyzerConfig',
     'rest_framework',
-    'django_extensions'
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

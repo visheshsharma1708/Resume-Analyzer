@@ -10,6 +10,7 @@ class Candidate(models.Model):
     education = models.TextField()
     resume = models.FileField(upload_to='resumes/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
+    job_description = models.TextField()
     def __str__(self):
         return self.name
 

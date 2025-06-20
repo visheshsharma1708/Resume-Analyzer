@@ -1,6 +1,12 @@
 from rest_framework import serializers
 from .models import Candidate
 from .utils import extract_text_from_resume  # Import the correct function
+from rest_framework import serializers
+from .models import Candidate
+
+class ResumeSerializer(serializers.Serializer):
+    file = serializers.FileField()
+    job_description = serializers.CharField(write_only=True)
 
 class CandidateSerializer(serializers.ModelSerializer):
     extracted_text = serializers.SerializerMethodField()
